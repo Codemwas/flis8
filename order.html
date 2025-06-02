@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Orders - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tracking-id {
+            font-weight: bold;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .tracking-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .tracking-link:hover {
+            text-decoration: underline;
+        }
+    </style> 
+	
+</head>
+
+<body>
+<section class="reveal">
+            <h2>Why Farmers Logistics?</h2>
+            <p>We simplify transport, tracking, and payments.</p>
+        </section>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+   
+    </section>
+
+ <button id="cartButton" onclick="window.location.href='cart.html'">
+    🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
+    <header>
+        <h1>🛒 Order Management</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="reg.html">🧑‍🌾 Register</a></li>
+                <li><a href="product.html">🧺 Products</a></li>
+                <li><a href="order.html" class="active">🛒 Orders</a></li>
+                <li><a href="tracking.html">🚚 Track</a></li>
+                <li><a href="dashboard.html" class="active">📊 Reports</a></li>
+                <li><a href="payments.html" class="active">💰 Payments</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>📦 Place a New Order</h2>
+            <form action="submit_order.php" method="POST" class="order-form">
+                <label for="farmerName">Farmer Name:</label>
+                <input type="text" id="farmerName" name="farmerName" required>
+
+                <label for="product">Select Product:</label>
+                <select id="product" name="product" required>
+                    <option value="">--Choose Product--</option>
+                    <option value="Milk">Milk</option>
+                    <option value="Tomatoes">Tomatoes</option>
+                    <option value="Onions">Onions</option>
+                    <option value="Cassavas">Cassavas</option>
+                    <option value="Eggs">Eggs</option>
+                    <option value="Cabbage">Cabbage</option>
+                </select>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+
+                <label for="destination">Delivery Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+
+                <button type="submit">Submit Order</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>📋 Placed Orders</h2>
+            <p>This section displays a list of recent orders with options to view, edit, or delete each order.</p>
+
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Farmer</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Destination</th>
+                        <th>Tracking ID</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample order with tracking ID -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>Milk</td>
+                        <td>20 Litres</td>
+                        <td>Nairobi</td>
+                        <td>
+                            <span class="tracking-id">ORD-2023-001</span>
+                            <br>
+                            <a href="tracking.html?id=ORD-2023-001" class="tracking-link">Track Order</a>
+                        </td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="action-btn">View</button>
+                            <button class="action-btn">Edit</button>
+                            <button class="action-btn danger">Delete</button>
+                        </td>
+                    </tr>
+                    <!-- Second sample order -->
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>Tomatoes</td>
+                        <td>50 Kg</td>
+                        <td>Mombasa</td>
+                        <td>
+                            <span class="tracking-id">ORD-2023-002</span>
+                            <br>
+                            <a href="tracking.html?id=ORD-2023-002" class="tracking-link">Track Order</a>
+                        </td>
+                        <td>In Transit</td>
+                        <td>
+                            <button class="action-btn">View</button>
+                            <button class="action-btn">Edit</button>
+                            <button class="action-btn danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+        
+        // Generate a random tracking ID when form is submitted
+        document.querySelector('.order-form').addEventListener('submit', function() {
+            const date = new Date();
+            const randomNum = Math.floor(Math.random() * 1000);
+            const trackingId = `ORD-${date.getFullYear()}-${(randomNum + '').padStart(3, '0')}`;
+            
+            // In a real application, you would send this to your server
+            console.log('Generated Tracking ID:', trackingId);
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById('cartCount').textContent = cart.length;
+}
+updateCartCount();
+
+        });
+    </script>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const orderForm = document.querySelector('.order-form');
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default submission
+
+        // Collect form data
+        const farmerName = document.getElementById('farmerName').value;
+        const product = document.getElementById('product').value;
+        const quantity = parseInt(document.getElementById('quantity').value, 10);
+        const destination = document.getElementById('destination').value;
+
+        // Create a new order object
+        const newOrder = {
+            farmerName: farmerName,
+            product: product,
+            quantity: quantity,
+            destination: destination
+        };
+
+        // Retrieve existing cart from localStorage or initialize
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Add new order to cart
+        cart.push(newOrder);
+
+        // Save updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Optional: Display a success message
+        alert("Order added to cart successfully!");
+
+        // Optional: Redirect to cart.html or reset form
+        window.location.href = 'cart.html';
+    });
+</script>
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const orderForm = document.querySelector('.order-form');
+    orderForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data
+        const farmerName = document.getElementById('farmerName').value;
+        const product = document.getElementById('product').value;
+        const quantity = parseInt(document.getElementById('quantity').value, 10);
+        const destination = document.getElementById('destination').value;
+
+        // Create new order object
+        const newOrder = {
+            farmerName: farmerName,
+            product: product,
+            quantity: quantity,
+            destination: destination
+        };
+
+        // Save to localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(newOrder);
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Now send to server using fetch
+        fetch('submit_order.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newOrder)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("Order submitted successfully and added to cart! 🎉");
+                window.location.href = 'cart.html';
+            } else {
+                alert("Failed to submit order to server: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert("Something went wrong while submitting the order.");
+        });
+    });
+</script>
+
+    <script src="script.js"></script>
+</body>
+</html>

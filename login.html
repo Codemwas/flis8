@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+			text-align: center;
+			background-image: url('tractor.jpg')
+			
+			
+        }
+        
+        .login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+			text-align: center;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2e8b57;
+        }
+        
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 5n  0px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+			align-items: center;
+        }
+        
+        button {
+            width: 100%;
+            background-color: #2e8b57;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #256d47;
+        }
+        
+        .links {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .links a {
+            color: #2e8b57;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+		
+        }
+		<?php
+session_start();
+if (!isset($_SESSION['farmer_name'])) {
+  header("Location: login.html");
+  exit();
+}
+?>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2> Login</h2>
+        <form action="login.php" method="POST">
+                <label for="email">Enter Your email:</label>
+		
+<input type="email" name="email" required placeholder="Eg. name@gmail.com">
+                <label for="pasword">Enter Your password:</label>
+  <input type="password" name="password" placeholder="Minimum 6 characters" required>
+                        <button type="submit">Login</button>
+        </form>
+        <form onsubmit="window.location.href='reg2.html'; return false;">
+            <button type="submit" style="background-color: #f44336;">Do not have an account? Register</button>
+        </form>
+        <div class="links">
+            <a href="forgot.html">Forgot Password?</a>
+        </div>
+    </div>
+<form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Farmer Home</title>
+</head>
+<body>
+  
+  </form>
+</body>
+</html>
+

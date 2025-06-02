@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Payments - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #f4fff4;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 128, 0, 0.1);
+        }
+        
+        .payment-form label {
+            font-weight: bold;
+        }
+        
+        .payment-form input,
+        .payment-form select,
+        .payment-form textarea {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        
+        .payment-form button {
+            background-color: #2e8b57;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .payment-form button:hover {
+            background-color: #256d47;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="reveal">
+        <h2>Why Farmers Logistics?</h2>
+        <p>We simplify transport, tracking, and payments.</p>
+    </section>
+
+    <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+
+    <header>
+        <h1>💰 Record a Payment</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="reg.html">🧑‍🌾 Register</a></li>
+                <li><a href="product.html">🧺 Products</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="tracking.html">🚚 Track</a></li>
+                <li><a href="dashboard.html" class="active">📊 Reports</a></li>
+                <li><a href="contact.html" class="active">📞 Contact</a></li>
+                <li><a href="payments.html" class="active">💰 Payments</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <form action="payments.php" method="POST" class="payment-form">
+                <label for="receiver_type">Receiver Type:</label>
+                <select name="receiver_type" id="receiver_type" required>
+        <option value="">-- Select --</option>
+        <option value="Farmer">Farmer</option>
+        <option value="Driver">Driver</option>
+        <option value="Loader">Loader</option>
+      </select>
+
+                <label for="receiver_name">Receiver Name:</label>
+                <input type="text" name="receiver_name" id="receiver_name" required placeholder="e.g. John Mwangi">
+
+                <label for="related_order_id">Related Order ID:</label>
+                <input type="number" name="related_order_id" id="related_order_id" placeholder="e.g. 3">
+
+                <label for="amount">Amount (Ksh):</label>
+                <input type="number" name="amount" id="amount" required placeholder="e.g. Ksh 1500">
+
+                <label for="paid_for">Payment Description:</label>
+                <textarea name="paid_for" id="paid_for" rows="4" placeholder="e.g. Milk delivery – Order #3" required></textarea>
+
+                <button type="submit">💾 Save Payment</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

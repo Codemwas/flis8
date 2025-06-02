@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Info & Reports - Farmers Logistics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .report-box {
+            white-space: pre-wrap;
+            margin-top: 20px;
+            background: #f0f9f0;
+            border: 1px solid #cceccc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .active {
+            font-weight: bold;
+            color: #2a7f2a;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="reveal">
+        <h2>Why Farmers Logistics?</h2>
+        <p>We simplify transport, tracking, and payments.</p>
+    </section>
+
+    <header>
+        <h1>📊 System Information & Reports</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="reg.html">🧑‍🌾 Register</a></li>
+                <li><a href="product.html">🧺 Products</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="tracking.html">🚚 Track</a></li>
+                <li><a href="dashboard.php" class="active">📊 Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <?php
+// Database connection
+$conn = new mysqli("localhost", "username", "password", "project");
+if ($conn->connect_error) {
+    die("Database Connection Failed: " . $conn->connect_error);
+}
+
+// Fetch farmers
+$farmers = [];
+$sqlFarmers = "SELECT name, product, location FROM farmers";
+$resultFarmers = $conn->query($sqlFarmers);
+if ($resultFarmers && $resultFarmers->num_rows > 0) {
+    while ($row = $resultFarmers->fetch_assoc()) {
+        $farmers[] = $row;
+    }
+}
+
+// Fetch orders
+$orders = [];
+$sqlOrders = "SELECT id, product, quantity, destination, status FROM orders";
+$resultOrders = $conn->query($sqlOrders);
+if ($resultOrders && $resultOrders->num_rows > 0) {
+    while ($row = $resultOrders->fetch_assoc()) {
+        $orders[] = $row;
+    }
+}
+
+// Summary stats
+$totalFarmers = count($farmers);
+$totalOrders = count($orders);
+$deliveredOrders = 0;
+$pendingOrders = 0;
+$productCount = [];
+
+foreach ($orders as $order) {
+    if (strtolower($order['status']) == 'delivered') {
+        $deliveredOrders++;
+    } else {
+        $pendingOrders++;
+    }
+    $product = $order['product'];
+    $productCount[$product] = ($productCount[$product] ?? 0) + 1;
+}
+
+// Top product
+$topProduct = 'N/A';
+if (!empty($productCount)) {
+    arsort($productCount);
+    $topProduct = array_key_first($productCount);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Farmers Logistics System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Farmers Logistics System</h1>
+    
+    <div class="summary">
+        <h2>System Summary</h2>
+        <p><strong>Registered Farmers:</strong> <?php echo $totalFarmers; ?></p>
+        <p><strong>Total Orders:</strong> <?php echo $totalOrders; ?></p>
+        <p><strong>Delivered Orders:</strong> <?php echo $deliveredOrders; ?></p>
+        <p><strong>Pending Orders:</strong> <?php echo $pendingOrders; ?></p>
+        <p><strong>Top Product:</strong> <?php echo $topProduct; ?></p>
+    </div>
+
+    <h2>Farmers List</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Product</th>
+            <th>Location</th>
+        </tr>
+        <?php foreach ($farmers as $farmer): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($farmer['name']); ?></td>
+            <td><?php echo htmlspecialchars($farmer['product']); ?></td>
+            <td><?php echo htmlspecialchars($farmer['location']); ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <h2>Orders List</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Destination</th>
+            <th>Status</th>
+        </tr>
+        <?php foreach ($orders as $order): ?>
+        <tr>
+            <td><?php echo htmlspecialchars($order['id']); ?></td>
+            <td><?php echo htmlspecialchars($order['product']); ?></td>
+            <td><?php echo htmlspecialchars($order['quantity']); ?></td>
+            <td><?php echo htmlspecialchars($order['destination']); ?></td>
+            <td><?php echo htmlspecialchars($order['status']); ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</body>
+</html>

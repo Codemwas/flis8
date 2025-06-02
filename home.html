@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Logistics System</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <style>
+        body {
+            background-image: url("farmers.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 50vh;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        h1 {
+            text-align: center;
+            padding-top: 50px;
+            font-size: 3em;
+            text-shadow: 2px 2px 8px black;
+        }
+    </style>
+
+
+
+
+    <body>
+        <section class="reveal">
+            <h2>Why Farmers Logistics?</h2>
+            <p>We simplify transport, tracking, and payments.</p>
+        </section>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+        <header>
+            <h1>🌾 Farmers Logistics System</h1>
+            <p class="subtitle">Connecting Farmers with Markets Efficiently</p>
+            <nav>
+                <ul>
+                    <li><a href="home.html" class="active">🏠 Home</a></li>
+                    <li><a href="reg.html">🧑‍🌾 Register Farmer</a></li>
+                    <li><a href="product.html">🧺 Product Catalog</a></li>
+                    <li><a href="order.html">🛒 Orders</a></li>
+                    <li><a href="tracking.html">🚚 Track Product</a></li>
+                    <li><a href="dashboard.html" class="active">📊 Reports</a></li>
+                    <li><a href="payments.html" class="active">💰 Payments</a></li>
+                    <li><a href="contact.html">📞 Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="home">
+            <h2>Welcome to the Future of Farm Logistics</h2>
+            <p>
+                Farmers Logistics System is a digital platform that helps farmers transport their products from remote rural areas to local markets and urban centers. It makes the process transparent, secure, and efficient — from registration to delivery tracking.
+            </p>
+
+            <h3>🚛 What the System Does:</h3>
+            <ul>
+                <li>Registers farmers and their products for easy access by buyers</li>
+                <li>Handles delivery logistics based on product type and destination</li>
+                <li>Uses live tracking to monitor where the goods are in real time</li>
+                <li>Supports invoice generation and digital payments</li>
+                <li>Calculates employee fees (loaders, drivers) automatically per trip</li>
+            </ul>
+
+            <h3>🧺 Sample Products We Handle:</h3>
+            <div class="product-showcase">
+                <div class="product">
+                    <h4>🥛 Milk</h4>
+                    <p>Fresh dairy collected daily from local farms.</p>
+                </div>
+                <div class="product">
+                    <h4>🍅 Tomatoes</h4>
+                    <p>Red, juicy, and ripe – perfect for retail and restaurants.</p>
+                </div>
+                <div class="product">
+                    <h4>🥚 Eggs</h4>
+                    <p>Carefully packaged and refrigerated to maintain freshness.</p>
+                </div>
+                <div class="product">
+                    <h4>🌽 Maize</h4>
+                    <p>Harvested in bulk and ready for millers or animal feed.</p>
+                </div>
+            </div>
+            <link rel="stylesheet" href="styles.css">
+
+            <script src="script.js"></script>
+
+        </section>
+  <form action="logout.php" method="post">
+    <button type="submit">Logout</button>
+        <script>
+            function toggleDarkMode() {
+                document.body.classList.toggle("dark-mode");
+            }
+        </script>
+        <script>
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        </script>
+    </body>
+
+</html>

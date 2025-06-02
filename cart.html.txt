@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🛒 My Cart - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .cart-table th, .cart-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .cart-table th {
+            background-color: #f4f4f4;
+        }
+        .btn {
+            padding: 5px 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn.danger {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🛒 My Cart</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="cart.html" class="active">🛒 Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Cart Items</h2>
+            <table class="cart-table" id="cartTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Destination</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="cartBody">
+                    <!-- Cart items will be populated here -->
+                </tbody>
+            </table>
+            <button class="btn" onclick="checkout()">Proceed to Checkout</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const cartBody = document.getElementById('cartBody');
+            cartBody.innerHTML = '';
+
+            if (cart.length === 0) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 5;
+                cell.textContent = 'Your cart is empty.';
+                row.appendChild(cell);
+                cartBody.appendChild(row);
+            } else {
+                cart.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${index + 1}</td>
+                        <td>${item.product}</td>
+                        <td>
+                            <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                        </td>
+                        <td>${item.destination}</td>
+                        <td>
+                            <button class="btn danger" onclick="removeItem(${index})">Remove</button>
+                        </td>
+                    `;
+                    cartBody.appendChild(row);
+                });
+            }
+        }
+
+        function updateQuantity(index, newQuantity) {
+            cart[index].quantity = parseInt(newQuantity, 10);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function removeItem(index) {
+            if (confirm("Are you sure you want to remove this item?")) {
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                renderCart();
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Your cart is empty. Please add some items before checking out.");
+                return;
+            }
+            alert("Thank you for placing your order! 🎉");
+            localStorage.removeItem('cart');
+            renderCart();
+        }
+
+        // Initial render
+        renderCart();
+    </script>
+</body>
+</html>

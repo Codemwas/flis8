@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Track Your Product</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <section class="reveal">
+        <h2>Why Farmers Logistics?</h2>
+            <p>We simplify transport, tracking, and payments.</p>
+        </section>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+        <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+    </section>
+<section>
+    <h2>Track Your Order</h2>
+    <p>Enter your tracking ID below to view the current status of your shipment.</p>
+    <form action="tracking.php" method="GET">
+        <label for="trackingID">Tracking ID:</label>
+        <input type="text" id="trackingID" name="trackingID" 
+               value="<?php echo htmlspecialchars($tracking_id); ?>" 
+               placeholder="e.g. TRK123456" required
+               pattern="[A-Za-z0-9]{6,12}" 
+               title="6-12 alphanumeric characters">
+        <button type="submit">Track</button>
+    </form>
+
+    <?php if ($error): ?>
+        <div class="error">
+            <p><?php echo $error; ?></p>
+            <p>Need help? <a href="contact.html">Contact support</a></p>
+        </div>
+    <?php endif; ?>
+</section>
+
+    <header>
+        <h1>Track Your Product</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="reg.html">Register</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="order.html">Orders</a></li>
+                <li><a href="tracking.html">Track Product</a></li>
+                <li><a href="dashboard.html">Reports</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Track Your Order</h2>
+        <p>Enter your tracking ID below to view the current status of your shipment.</p>
+        <form action="tracking.php" method="GET">
+            <label for="trackingID">Tracking ID:</label>
+            <input type="text" id="trackingID" name="trackingID" placeholder="e.g. TRK123456" required>
+            <button type="submit">Track</button>
+        </form>
+
+        <div class="tracking-results">
+            <h3>Status: In Transit</h3>
+            <p>Last known location: Kisumu - 12:45 PM</p>
+            <p>Estimated Delivery Time: 3:00 PM today</p>
+        </div>
+    </section>
+    <li><a href="home.html">🏠 Home</a></li>
+
+    <footer>
+        <p>&copy; 2025 Farmers Logistics System</p>
+    </footer>
+	<script
+    function toggleDarkMode() {
+                document.body.classList.toggle("dark-mode");
+            }
+        </script>
+        <script>
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        </script>
+</body>
+
+</html>

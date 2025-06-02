@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>💳 Payment - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn.danger {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>💳 Payment</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="cart.html">🛒 Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="payment-container">
+            <h2>Review Your Order</h2>
+            <div id="orderSummary"></div>
+
+            <h3>Select Payment Method:</h3>
+            <label><input type="radio" name="paymentMethod" value="mpesa" checked> Mpesa</label><br>
+            <label><input type="radio" name="paymentMethod" value="paypal"> PayPal</label><br>
+            <label><input type="radio" name="paymentMethod" value="cash"> Cash on Delivery</label><br><br>
+
+            <button class="btn" onclick="processPayment()">Confirm and Pay</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Retrieve cart
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const orderSummary = document.getElementById('orderSummary');
+
+        if (cart.length === 0) {
+            orderSummary.innerHTML = "<p>Your cart is empty. Please go back and add some items.</p>";
+        } else {
+            let summaryHtml = "<ul>";
+            cart.forEach(item => {
+                summaryHtml += `<li>${item.product} (${item.quantity}) to ${item.destination}</li>`;
+            });
+            summaryHtml += "</ul>";
+            orderSummary.innerHTML = summaryHtml;
+        }
+
+        function processPayment() {
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            alert(`Thank you! You selected ${paymentMethod} as your payment method.`);
+            localStorage.removeItem('cart');
+            window.location.href = 'thankyou.html'; // or 'home.html' as you prefer
+        }
+    </script>
+</body>
+</html>

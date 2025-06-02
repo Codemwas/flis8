@@ -1,0 +1,118 @@
+ <html>
+ <body>
+		 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+	<style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+           
+			
+			
+        }
+        
+        .login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+			text-align: center;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2e8b57;
+        }
+        
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 5n  0px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+			align-items: center;
+        }
+        
+        button {
+            width: 100%;
+            background-color: #2e8b57;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #256d47;
+        }
+        
+        .links {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .links a {
+            color: #2e8b57;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .links a:hover {
+            text-decoration: underline;
+			</style>
+		
+  <h2>Farmer Registration Form</h2>
+            <p>Fill in the details below to get started on our logistics platform. Once registered, you can list your products and track your deliveries.</p>
+
+            <form action="register.php" method="POST" enctype="multipart/form-data">
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required placeholder="e.g. Emily Mwangi">
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="e.g. emilymwangi@example.com">
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required placeholder="e.g. 0712345678">
+
+                <label for="location">Farm Location:</label>
+                <input type="text" id="location" name="location" required placeholder="e.g. Eldoret, Kenya">
+
+                <label for="product_type">Primary Product:</label>
+                <select id="product_type" name="product_type" required>
+            <option value="" disabled selected>Select your primary product</option>
+            <option>Milk</option>
+            <option>Tomatoes</option>
+            <option>Onions</option>
+            <option>Cassavas</option>
+            <option>Eggs</option>
+            <option>Other</option>
+          </select>
+
+                <label for="password">Create Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Minimum 6 characters">
+				<label>Upload farmer photo:</label><br>
+  <input type="file" name="image" accept="image/*" required><br><br>
+  
+
+                <button type="submit" class="button">Register Farmer</button>
+		
+                <a href="login.html" class="button">Have an account? Login</a>
+  
+            </form>
+			</body>
+			<script>
+        // Update footer year
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+			</html>

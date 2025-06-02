@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Product Catalog - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <section class="reveal">
+        <h2>Why Farmers Logistics?</h2>
+        <p>We simplify transport, tracking, and payments.</p>
+    </section>
+
+    <button class="btn-toggle" onclick="toggleDarkMode()">🌓 Toggle Mode</button>
+
+    <header>
+        <h1>🧺 Product Catalog</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="reg.html">🧑‍🌾 Register</a></li>
+                <li><a href="product.html" class="active">🧺 Products</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="tracking.html">🚚 Track</a></li>
+                <li><a href="dashboard.html" class="active">📊 Reports</a></li>
+                <li><a href="payments.html" class="active">💰 Payments</a></li>
+                <li><a href="contact.html">📞 Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form action="submit_product.php" method="POST">
+        <label>Product Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Category:</label>
+        <input type="text" name="category" placeholder="e.g. Dairy, Vegetables">
+
+        <label>Description:</label>
+        <textarea name="description" rows="3" required></textarea>
+
+        <label>Price (Ksh):</label>
+        <input type="number" name="price" step="0.01" required>
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <main>
+        <section>
+            <h2>Available Farm Products</h2>
+            <p>Explore our selection of fresh, high-quality produce delivered directly from registered farmers.</p>
+
+            <div class="product-grid">
+                <div class="product-card">
+                    <h3>🥛 Milk</h3>
+                    <p>Fresh cow milk, refrigerated and safely packed.</p>
+                    <p><strong>Category:</strong> Dairy</p>
+                    <p><strong>Price:</strong> Ksh 60/Litre</p>
+                </div>
+
+                <div class="product-card">
+                    <h3>🍅 Tomatoes</h3>
+                    <p>Red, ripe, juicy tomatoes, ideal for cooking or salads.</p>
+                    <p><strong>Category:</strong> Vegetables</p>
+                    <p><strong>Price:</strong> Ksh 80/Kg</p>
+                </div>
+
+                <div class="product-card">
+                    <h3>🥚 Eggs</h3>
+                    <p>Farm fresh eggs delivered with care.</p>
+                    <p><strong>Category:</strong> Poultry</p>
+                    <p><strong>Price:</strong> Ksh 15/Egg</p>
+                </div>
+
+                <div class="product-card">
+                    <h3>🧅 Onions</h3>
+                    <p>Pungent and long-lasting bulbs from local farms.</p>
+                    <p><strong>Category:</strong> Vegetables</p>
+                    <p><strong>Price:</strong> Ksh 70/Kg</p>
+                </div>
+
+                <div class="product-card">
+                    <h3>🌽 Maize</h3>
+                    <p>Dried and clean maize grains ready for milling.</p>
+                    <p><strong>Category:</strong> Grains</p>
+                    <p><strong>Price:</strong> Ksh 50/Kg</p>
+                </div>
+
+                <div class="product-card">
+                    <h3>🥬 Cabbage</h3>
+                    <p>Large, leafy cabbages harvested fresh every morning.</p>
+                    <p><strong>Category:</strong> Vegetables</p>
+                    <p><strong>Price:</strong> Ksh 100/Head</p>
+                </div>
+            </div>
+
+            <div class="center">
+                <a href="order.html" class="btn">Place an Order</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

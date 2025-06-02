@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us - Farmers Logistics System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <section class="reveal">
+        <h2>Why Farmers Logistics?</h2>
+        <p>We simplify transport, tracking, and payments.</p>
+    </section>
+
+    <header>
+        <h1>📞 Contact Support</h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">🏠 Home</a></li>
+                <li><a href="reg.html">🧑‍🌾 Register</a></li>
+                <li><a href="product.html">🧺 Products</a></li>
+                <li><a href="order.html">🛒 Orders</a></li>
+                <li><a href="tracking.html">🚚 Track</a></li>
+                <li><a href="dashboard.html" class="active">📊 Reports</a></li>
+                <li><a href="payments.html" class="active">💰 Payments</a></li>
+                <li><a href="contact.html" class="active">📞 Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>We’d Love to Hear From You</h2>
+            <p>If you have any questions about your orders, system usage, or want to offer feedback, feel free to reach out using the form below or the contact details provided.</p>
+
+            <form action="contact.php" method="POST" class="contact-form">
+                <label for="fullname">Full Name:</label>
+                <input type="text" id="fullname" name="fullname" required placeholder="Your name">
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required placeholder="How can we help you?">
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Write your message here..."></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>📍 Contact Details</h2>
+            <p><strong>📧 Email:</strong> support@farmerslogistics.com</p>
+            <p><strong>📞 Phone:</strong> +254 712 345 678</p>
+            <p><strong>📌 Address:</strong> Nairobi, Kenya – AgroTech Hub, Room 5B</p>
+            <p><strong>⏰ Working Hours:</strong> Mon–Fri: 8:00am to 6:00pm</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Farmers Logistics System | Developed by Mwashi Victor</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
